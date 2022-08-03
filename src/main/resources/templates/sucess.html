@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title> OASYS-Visitor Management System</title>
+<link rel="icon" sizes="32x32" th:href="@{/image/oasys_logo_icon.png}" type="image/png">
+<script src="https://code.jquery.com/jquery-3.3.1.min.js">
+  </script>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+<style type="text/css">
+    span {
+        display: inline-block;
+        width: 200px;
+        text-align: left;
+    }
+</style>
+</head>
+<body>
+<script type="text/javascript">
+function disableF5(e) { if ((e.which || e.keyCode) == 116 || (e.which || e.keyCode) == 82) e.preventDefault(); };
+
+$(document).ready(function(){
+     $(document).on("keydown", disableF5);
+});
+</script>
+<div align="center" >
+    <h2>Registration Succeeded!</h2>
+    <table class = "table table-striped table-bordered ">
+    <thead>
+    
+    
+    <div class="col-md-12" align="center">
+        <br />
+        <div class="alert alert-success col-md-8" role="alert">
+            <p th:text="${successMsg}" />
+        </div>
+    </div>
+    
+    <tr align="Left">
+    
+    <th>Sl.No</th>
+    <th >Format</th>
+    <th >Details</th>
+    </tr>
+    </thead>
+    <tbody>
+    <script>
+    window.onbeforeunload = function() {
+        return "you can not refresh the page";
+    }
+    </script>
+    <tr align="Left">
+    <td>1</td><td>Visitor Name</td><td th:text="${visitor.name}"></td></tr>
+    <tr align="Left">
+   <td>2</td> <td>Phone Number</td><td th:text="${visitor.phoneNumber}"></td></tr>
+   <tr align="Left">
+    <td>3</td><td>Visitor Email</td><td th:text="${visitor.email}"></td></tr>
+    <!-- <tr align="Left">
+    <td>4</td><td>Visitor Gender</td><td th:text="${visitor.gender}"></td></tr> -->
+    <tr align="Left">
+    <td>5</td><td>Visitor Govt Id</td><td th:text="${visitor.govtId}"></td></tr>
+   <tr align="Left">
+    <td>6</td><td>Whom To Meet</td><td th:text="${visitor.toMeet}"></td></tr>
+   <tr align="Left">
+    <td>7</td><td>Department of Whom to Meet</td><td th:text="${visitor.department}"></td></tr>
+   <tr align="Left">
+    <td>8</td><td>Visitor Address</td><td th:text="${visitor.address}"></td></tr>
+   <tr align="Left">
+    <td>9</td><td>Purpose Of The Visit</td><td th:text="${visitor.purpose}"></td></tr>
+    <tr align="Left">
+   <td>10</td> <td>Visitor Vehicle Number</td><td th:text="${visitor.vehicleNumber}"></td></tr>
+   <tr align="Left">
+   <td>11</td> <td>Visitor Vehicle Type</td><td th:text="${visitor.vehicleType}"></td></tr>
+    
+    </tbody>
+    
+    </table>
+  
+</body>
+</html>

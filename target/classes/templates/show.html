@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+
+<title> OASYS-Visitor Management System</title>
+<link rel="icon" sizes="32x32" th:href="@{/image/oasys_logo_icon.png}" type="image/png">
+<script src="https://code.jquery.com/jquery-3.3.1.min.js">
+  </script>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+	
+  <style>
+.banner {
+    position: relative;
+    height: 135px;
+    background-image: url("/image/visitor.jpg");      background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    }
+</style>
+
+</head>
+<body>
+
+<script type="text/javascript">
+	function funPrint() {
+		
+		var prtContent = document.getElementById("visitor_list");
+		var WinPrint = window.open('', '', 'left=0,top=0,width=800,height=900,toolbar=0,scrollbars=0,status=0');
+		WinPrint.document.write(prtContent.innerHTML);
+		WinPrint.document.close();
+		WinPrint.focus();
+		WinPrint.print();
+		WinPrint.close();
+		
+	}
+	</script>
+      
+  <div class ="container-fluid">
+		<div class="login-header box-shadow">
+            <div class="banner">
+          <h1 class="text-white">  Visitor Information List	</h1>
+        </div>  <br>	
+        
+        <div class="text-center"><h3>Visitor Details</h3></div><br>
+        <div   align="center">
+    <table class = "table table-striped table-bordered ">
+    <thead>
+    <tr align="Left">
+    <th>Sl.No</th>
+    <th >Format</th>
+    <th >Details</th>
+    </thead>
+    <tbody>
+    <tr align="Left">
+    <td>1</td><td>Visitor Name</td><td th:text="${visitor.name}"></td></tr>
+    <tr align="Left">
+   <td>2</td> <td>Phone Number</td><td th:text="${visitor.phoneNumber}"></td></tr>
+   <tr align="Left">
+    <td>3</td><td>Visitor Email</td><td th:text="${visitor.email}"></td></tr>
+    <!-- <tr align="Left">
+    <td>4</td><td>Visitor Gender</td><td th:text="${visitor.gender}"></td></tr> -->
+    <!-- <tr align="Left">
+    <td>5</td><td>Visitor Govt Id</td><td th:text="${visitor.govtId}"></td></tr> -->
+   <tr align="Left">
+    <td>6</td><td>Whom To Meet</td><td th:text="${visitor.toMeet}"></td></tr>
+   <!-- <tr align="Left">
+    <td>7</td><td>Department of Whom to Meet</td><td th:text="${visitor.department}"></td></tr> -->
+   <tr align="Left">
+    <td>7</td><td>Visitor Address</td><td th:text="${visitor.address}"></td></tr>
+   <tr align="Left">
+    <td>8</td><td>Purpose Of The Visit</td><td th:text="${visitor.purpose}"></td></tr>
+    <tr align="Left">
+   <!-- <td>10</td> <td>Visitor Vehicle Number</td><td th:text="${visitor.vehicleNumber}"></td></tr>
+   <tr align="Left">
+   <td>11</td> <td>Visitor Vehicle Type</td><td th:text="${visitor.vehicleType}"></td></tr> -->
+    
+    </tbody>
+    
+    </table>
+    
+    
+		
+		
+		 <!-- <div class ="container">
+          <button class="btn-primary" align="center" type="submit" href="/">Print</button>
+        </div> -->
+		<div class="btn btn-primary text-center mt-4 home">
+		<a href="" class="text-white"onclick="window.print()">print</a>
+		</div>&nbsp;&nbsp;&nbsp;&nbsp;
+		<div class="btn btn-secondary text-center mt-4 home">
+		<a onclick="history.back()" class="text-white">Back</a>
+		</div>
+		
+	</div><br><br>
+	</div>
+	
+</body>
+</html>

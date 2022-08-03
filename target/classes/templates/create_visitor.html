@@ -1,0 +1,388 @@
+
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>OASYS-Visitor Management System</title>
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1">
+<link rel="icon" sizes="32x32" th:href="@{/image/oasys_logo_icon.png}"
+	type="image/png">
+
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+	rel="stylesheet">
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+
+<link
+	href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+	rel="stylesheet">
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/es6-shim/0.35.3/es6-shim.min.js"></script>
+
+<link th:href="@{/styles/cssandjs/core.css}" rel="stylesheet" />
+
+<link th:href="@{/styles/cssandjs/icon-font.min.css}" rel="stylesheet" />
+
+<link th:href="@{/styles/cssandjs/style.css}" rel="stylesheet" />
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<style>
+.banner {
+	position: relative;
+	height: 135px;
+	/* background-image: url("/image/visitor.jpg"); */
+	background-size: cover;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+}
+
+
+select > .placeholder {
+  display: none;
+}
+</style>
+<script  type="text/javascript">
+	function nameValidation() {
+		username = document.getElementById("name_field").value;
+		//var format = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/;
+		var message = document.getElementById("name-error");
+		message.innerHTML="";
+		if (username == '') {
+			message.innerHTML = "Username must not be empty";
+			return false;
+		} else if (username != '') {
+			 if (username.length < 3) {
+				 message.innerHTML = "Username must contain at least 3 characters";
+				return false;
+			}  else {
+				return true;
+			}
+				}
+	}
+</script>
+<script>
+	function staffValidation() {
+		username = document.getElementById("staff_field").value;
+		//var format = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/;
+		var message = document.getElementById("staff-error");
+		message.innerHTML="";
+		if (username == '') {
+			message.innerHTML = "Staff Name must not be empty";
+			return false;
+		} else if (username != '') {
+			 if (username.length < 3) {
+				 message.innerHTML = "Staff Name must contain at least 3 characters";
+				return false;
+			}  else {
+				return true;
+			}
+		}
+	}
+</script>
+
+
+
+
+<script type="text/javascript">
+	function  check() {
+		var mobile = document.getElementById("mobileNumber").value;
+		var message = document.getElementById("message");
+		message.innerHTML="";
+		//var numformat = /^([6-9]{1}+[0-9]{9}])/;
+		
+		if(mobile.length!=10)
+			{ message.innerHTML="10 Digit Mobile Number Required";
+			}
+				
+	}
+</script>
+
+<script type="text/javascript">
+    function ValidateEmail() {
+        var email = document.getElementById("myEmail").value;
+        var lblError = document.getElementById("email-error");
+        lblError.innerHTML = "";
+        var expr = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+        if (!expr.test(email)) {
+            lblError.innerHTML = "Invalid email address.";
+        }
+    }
+</script>
+
+
+<!-- 
+<script>
+       								 $(document).ready(function(){
+            					   // Initialize select2
+          							  $("#selectDeparment").select2();
+            					   });
+        								</script> -->
+        								<!-- <script>
+       								 $(document).ready(function(){
+            					   // Initialize select2
+          							  $("#selectToMeet").select2();
+            					   });
+        								</script> -->
+</head>
+<body  >
+
+
+
+
+	<form action="#" th:action="@{/visitors/save}" th:object="${visitor}" id="formID"
+		method="POST" >
+		
+		<div><img th:src="@{/image/Artboard2.jpg}"   ></div>
+			<div class="login-header box-shadow"><br>
+				
+				<div class="container-fluid ">
+					<div class="row align-items-center">
+						<div class="tab-content" id="myTabContent">
+							<div class="tab-pane fade show active" id="home" role="tabpanel"
+								aria-labelledby="home-tab">
+								<div class="row register-form">
+									<div class="col-md-6">
+										
+										<div class="form-floating">
+												<input type="text" 	 class="form-control"										
+												onkeyup="nameValidation();" name="name" pattern="[A-Za-z\s]+"
+												id="name_field"  maxlength="25"   title="Name should contain only Alphabets no special Characters allowed"
+												placeholder="Enter the Visitor Name" 												
+												required /> <label for="floatingInput" >Name</label> <span
+												id="name-error" class=text-danger></span>
+												
+												
+										</div>
+										<br>
+										<div class="form-floating ">
+											<input type="tel" class="form-control" onkeypress="return /[0-9]/i.test(event.key)"
+												 minlength="10"  maxlength="10" id="mobileNumber" title="Mobile Number Format Start With '6|7|8|9' Ten digits in total required"
+												name="phoneNumber" placeholder="Enter the Visitor Number"
+												pattern="[6-9]{1}[0-9]{9}" required onkeyup="check();"/> <label
+												for="floatingInput">Mobile</label><span class="text-danger"id="message"></span>
+										</div> <!-- onkeypress="return /[0-9]/i.test(event.key)"  -->
+										<br>
+										
+										
+										<div class="form-floating">
+											<input class="form-control" name="email" id="myEmail" maxlength="35"
+												type="email"
+												pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+												data-bv-emailaddress-message="The value is not a valid email address"
+												onkeyup="ValidateEmail();"
+													title="Email format abc@xyz.co"
+												placeholder="Enter the Visitor EMail"> <label
+												for="floatingInput">Email</label> <span id="email-error"
+												class="text-danger"></span>
+										</div>
+										<br>
+										
+     									    
+     									     
+										
+										<!-- <div class="form-floating">
+											<select class="form-select" type="text" id="floatingSelect" 
+												 name="gender"
+												placeholder="Enter the Gender" required>
+												<option class="placeholder" selected disabled value="" > Select Gender</option>
+    											<option th:value="'Male'" th:text="Male"></option>
+    											<option th:value="'Female'" th:text="Female"></option>
+    											<option th:value="'Transgender'" th:text="Transgender"></option>
+												</select> 
+												<label for="floatingSelect">Gender</label>
+												
+										</div>
+										<br>
+ -->	
+										<!-- <div class="form-floating">
+												
+												<select class="form-select" 
+												type="text" 
+												 name="toMeet"
+												  id="toMeet"
+												placeholder="Enter the staff"
+												 required>
+												<option class="placeholder" selected disabled value="" > Select Whom To Meet</option>
+    											 <option th:each="meet : ${toMeet}" th:value="${meet.name}" th:text="${meet.name}"></option>
+												</select>
+												<label for="floatingSelect">Whom To Meet</label> 
+												
+												
+										</div>
+										<br> -->
+											<!-- <div class="form-floating">
+											<input type="text" class="form-control" name="vehicleNumber" maxlength="10"
+												placeholder="Vehicle Type" title="Vehicle Number format 'AB12CD1234'"  /> <label
+												for="floatingInput">Vehicle Number</label>
+										</div>
+										<br> -->
+
+										<!-- <div class="form-floating">
+											<input type="text" class="form-control"
+												onkeypress="return /[0-9]/i.test(event.key)" maxlength="1"
+												name="visitorCount" placeholder="Visitor Count" required />
+											<label for="floatingInput">Visitor Count</label>
+										</div>
+										<br>-->
+ 
+
+										<div class="form-floating">
+											<textarea type="text" rows="3" class="form-control" maxlength="243"
+												name="address" placeholder="Address of The Visitor" id="floatingTextarea2" 
+												style="height: 100px" required></textarea>
+											<label for="floatingTextarea2">Address</label>
+										</div>
+										<br>
+
+									</div>
+									<div class="col-md-6">
+									<div class="form-floating">
+												<input type="text" 	 class="form-control"										
+												onkeyup="staffValidation();" name="toMeet" pattern="[A-Za-z\s]+"
+												id="staff_field" title="Name should contain only Alphabets no special Characters allowed"	 maxlength="25"  
+												placeholder="Whom to Meet" 												
+												required /> <label for="floatingInput" >Whom to Meet</label> <span
+												id="staff-error" class=text-danger></span>
+												
+												
+										</div>
+										<br>
+										<!-- <div class="form-floating ">
+											<input type="tel" class="form-control" onkeypress="return /[0-9]/i.test(event.key)"
+												 minlength="10"  maxlength="10" id="mobileNumber" title="Mobile Number Format Start With '6|7|8|9' Ten digits in total required"
+												name="phoneNumber" placeholder="Enter the Visitor Number"
+												pattern="[6-9]{1}[0-9]{9}" required onkeyup="check();"/> <label
+												for="floatingInput">Mobile</label><span class="text-danger"id="message"></span>
+										</div> onkeypress="return /[0-9]/i.test(event.key)" 
+										<br> -->
+										
+										
+										
+										<!-- <div class="form-floating">
+											<input type="text" class="form-control" name="govtId"  maxlength="12"
+												placeholder="Enter any Government Id"> <label
+												for="floatingInput">Govt.Id Details</label>
+										</div>
+										<br> -->
+											<!-- <div class="form-floating">
+												<select class="form-select"  id="selectDeparment"
+												onkeydown="return /[a-z]/i.test(event.key)" style="width: 100%"
+												name="department" required>
+												<option class="placeholder" selected disabled value="" > Select The Department</option>
+    											<option th:value="'Admin'" th:text="Admin"></option>
+    											<option th:value="'Office'" th:text="Office"></option>
+    											<option th:value="'ExamCell'" th:text="ExamCell"></option>
+    											<option th:value="'Civil'" th:text="Civil"></option>
+    											<option th:value="'Mechanical'" th:text="Mechanical"></option>
+    											<option th:value="'Electrical'" th:text="Electrical"></option>
+    											<option th:value="'Electronics'" th:text="Electronics"></option>
+    											<option th:value="'InformationTechnology'" th:text="InformationTechnology"></option>
+    											<option th:value="'ComputerScience'" th:text="ComputerScience"></option>
+												</select> 
+												
+										</div>
+										<br> -->
+										
+										<!-- <div class="form-floating">
+												<select class="form-select"  id="floatingSelect"
+												onkeydown="return /[a-z]/i.test(event.key)" placeholder="Enter the Department"
+												name="department" required>
+												<option class="placeholder" selected disabled value="" > Select The Department</option>
+    											<option th:each="dept : ${department}" th:value="${dept.department}" th:text="${dept.department}"></option>
+    											</select> 
+												<label for="floatingSelect">Choose Department</label>
+										</div>
+										<br> -->
+										
+										
+									<!--  <div class="form-floating">
+											<select class="form-select" type="text" id="floatingSelect" 
+												 name="purpose" 
+												placeholder="Purpose of Visit" >
+											<option class="placeholder" selected disabled value="" >Purpose of Visit	</option> 
+    											<option th:value="'Official'" >Official</option>
+    											<option th:value="'Personnal'" >Personal</option>
+    											<option th:value="'Interview'" >Interview</option>
+    											</select> 
+												<label for="floatingSelect">Purpose of Visit</label>
+												
+										</div> --> 
+									
+											<div class="form-group row align-items-center">
+											<label class="col-md-4 col-form-label">Purpose of Visit</label>
+											<div class="col-sm-8">
+												<div class="custom-control custom-radio custom-control-inline pb-0">
+													<input type="radio" id="Official" value="Official"  name="purpose" class="custom-control-input" required>
+													<label class="custom-control-label" for="Official">Official</label>
+												</div>
+												<div class="custom-control custom-radio custom-control-inline pb-0">
+													<input type="radio" id="Personal" name="purpose"  value="Personal"  class="custom-control-input" required>
+													<label class="custom-control-label" for="Personal">Personal</label>
+												</div>
+											</div>
+										</div>
+		<br>
+
+										<div class="form-floating">
+											<textarea type="text" rows="3" class="form-control"
+												name="description" placeholder="Purpose of the visit" maxlength="243"
+												id="floatingTextarea2" style="height: 100px"></textarea>
+											<label for="floatingTextarea2">Description</label>
+										</div>
+										<br>
+
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<br>
+					<div class="text-center sd-6 home">
+						<button id="submitID" type="submit"  class="btn btn-success" data-toggle="modal" data-target="#myModal">Submit</button>
+						
+						
+						<!-- <button type="reset"  class="btn btn-secondary"> Reset </button> -->
+						<button type="submit" class="btn btn-secondary" onclick="history.back()">Back</button>
+					</div>
+			
+
+					</div>
+					
+				
+			
+			<br><br></div>
+			
+	</form>
+	
+	 <script>
+const form = document.getElementById('formID');
+
+form.addEventListener('submit', function handleSubmit(event) {
+  event.preventDefault();
+
+  form.submit();
+
+  // 👇️ Reset form here
+  form.reset();
+});
+    </script>
+
+	<script type="text/javascript" th:src="@{/js/cssandjs/core.js}"></script>
+	<script type="text/javascript" th:src="@{/js/cssandjs/script.min.js}"></script>
+	<script type="text/javascript" th:src="@{/js/cssandjs/process.js}"></script>
+	<script type="text/javascript"
+		th:src="@{/js/cssandjs/layout-settings.js}"></script>
+		
+ 
+
+
+</body>
+</html>

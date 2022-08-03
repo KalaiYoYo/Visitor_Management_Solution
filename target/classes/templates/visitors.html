@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+
+<title> OASYS-Visitor Management System</title>
+<link rel="icon" sizes="32x32" th:href="@{/image/oasys_logo_icon.png}" type="image/png">
+<script src="https://code.jquery.com/jquery-3.3.1.min.js">
+  </script>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+	<script type="text/javascript">
+    $(document).ready(function () {
+      setTimeout(function () {
+        
+        location.reload(true);
+      }, 5000);
+    });
+  </script>
+  <style>
+.banner {
+    position: relative;
+    height: 135px;
+    background-image: url("/image/visitor.jpg");      background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    }
+    
+    .background-image
+    {
+    background-image: url("/image/VMS.jpg"); 
+    background-repeat: no-repeat; 
+   /*  background-size: cover;  */
+   background-attachment:fixed;
+   background-size: 100%;
+   background-opacity: 0.5;
+   z-index: -1;
+    background-position: center center;
+    }
+</style>
+
+</head>
+<body >
+
+<script type="text/javascript">
+	function funPrint() {
+		
+		var prtContent = document.getElementById("visitor_list");
+		var WinPrint = window.open('', '', 'left=0,top=0,width=800,height=900,toolbar=0,scrollbars=0,status=0');
+		WinPrint.document.write(prtContent.innerHTML);
+		WinPrint.document.close();
+		WinPrint.focus();
+		WinPrint.print();
+		WinPrint.close();
+		
+	}
+	</script>
+      
+  <div class ="container-fluid"> 
+		<div class="login-header box-shadow">
+            <div class="banner">
+          <h1 class="text-white">  Visitor Information List	</h1>
+        </div>
+       
+
+        <br>
+        
+        <div >
+		
+		<div class = "row">
+			<div class = "col-lg-3">
+				<a th:href = "@{/visitors/new}" class = "btn btn-success "> Add visitor</a>
+			<!-- 	<a th:href = "@{/visitor/sucess}" class = "btn btn-success "> add</a> -->
+				
+			</div>
+		</div>
+		<br>
+		<table class = "table table-striped table-bordered" id="visitor_list">
+			<thead class = "table-secondary">
+				<tr align="center">
+					<th class = "col-sm-2" align="center">  Name</th>
+					<th class = "col-sm-2" align="center">  Phone</th>
+					<!--  <th> Gender </th> -->
+					<!--<th>Visitor Address</th> -->
+					<!-- <th>Govt Id</th> -->
+					<th class = "col-sm-2" align="center">To Meet</th>
+					<!-- <th>Department</th>
+					<th>Purpose</th> -->
+					<th class = "col-sm-2" align="center">Check In</th>
+					<th class = "col-sm-2" align="center">Check Out</th>
+					<th class = "col-sm-2" align="center"> Actions </th>
+				</tr>
+			</thead>
+			
+			<tbody>
+				<tr  align="center" th:each = "visitor: ${visitors}">
+					<td th:text = "${visitor.name}"></td>
+					<td th:text = "${visitor.phoneNumber}"></td>
+					<!--  <td th:text = "${visitor.gender}"></td> -->
+					<!--<td th:text = "${visitor.address}"></td> -->
+					<!-- <td th:text = "${visitor.govtId}"></td> -->
+					<td th:text = "${visitor.toMeet}"></td>					
+					<!-- <td th:text = "${visitor.department}"></td>
+					<td th:text = "${visitor.purpose}"></td> -->
+					<td th:text = "${visitor.inTime}"></td>
+					 <td th:text = "${visitor}"></td> 
+					 
+					<td align="center">
+						<!-- <a th:href = "@{/visitors/edit/{id}(id=${visitor.id})}" class="btn btn-outline-secondary">
+						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">
+  <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"></path>
+</svg></a>&nbsp;&nbsp;&nbsp;&nbsp; -->
+						
+						 
+						 <a th:href = "@{/visitors/show/{id}(id=${visitor.id})}" class="btn btn-outline-primary">
+						 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
+  <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"></path>
+  <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"></path>
+</svg>
+
+		
+
+
+</a>&nbsp;&nbsp;&nbsp;&nbsp;
+
+						
+						 <a th:href = "@{/visitors/{id}(id=${visitor.id})}" class="btn btn-outline-danger">
+						  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-octagon-fill" viewBox="0 0 16 16">
+  <path d="M11.46.146A.5.5 0 0 0 11.107 0H4.893a.5.5 0 0 0-.353.146L.146 4.54A.5.5 0 0 0 0 4.893v6.214a.5.5 0 0 0 .146.353l4.394 4.394a.5.5 0 0 0 .353.146h6.214a.5.5 0 0 0 .353-.146l4.394-4.394a.5.5 0 0 0 .146-.353V4.893a.5.5 0 0 0-.146-.353L11.46.146zm-6.106 4.5L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 1 1 .708-.708z"></path>
+</svg></a>	
+						 
+						  	
+						 					
+					</td>
+				</tr>					
+			</tbody>		
+		</table>
+		</div>
+		 <!-- <div class ="container">
+          <button class="btn-primary" align="center" type="submit" href="/">Print</button>
+        </div> -->
+		<!-- <div class="btn btn-primary text-center mt-4 home">
+		<a href="" class="text-white"onclick="window.print()">print</a>
+		</div> -->
+	</div>
+	</div>
+	
+</body>
+</html>
