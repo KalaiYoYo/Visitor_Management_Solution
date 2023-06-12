@@ -46,22 +46,23 @@ public class Visitor {
 	 * @Column(name="govt_id") private String govtId;
 	 */
 	
-//	@Column(name = "department")
-//	private String department;
+	@Column(name = "department")
+	private String department;
 	
 	@Column(name = "purpose")
 	private String purpose;
 	
-	@DateTimeFormat(pattern = "dd-MM-yyyy HH:mm:ss")
+//@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone="IST")
 	@Column(name = "in_time")
 	private LocalDateTime inTime;
 	
-	@DateTimeFormat(pattern = "dd-MM-yyyy HH:mm:ss")
+//	@DateTimeFormat(pattern = "dd-MM-yyyy HH:mm:ss")
+//@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone="IST")
 	@Column(name = "out_time")
 	private LocalDateTime  outTime;
 	
 //	@Column(name="visitor_count")
-//	private String visitorCount;
+	private String exittime;
 //	
 //	@Column(name="vehicle_no")
 //	private String vehicleNumber;
@@ -69,6 +70,14 @@ public class Visitor {
 //	@Column(name="vehicle_type")
 //	private String vehicleType;
 	
+	public String getExittime() {
+		return exittime;
+	}
+
+	public String setExittime(String exittime) {
+		return this.exittime = exittime;
+	}
+
 	@Column(name="description")
 	private String description;
 
@@ -141,13 +150,13 @@ public class Visitor {
 		this.toMeet = toMeet;
 	}
 
-//	public String getDepartment() {
-//		return department;
-//	}
-//
-//	public void setDepartment(String department) {
-//		this.department = department;
-//	}
+	public String getDepartment() {
+		return department;
+	}
+
+	public void setDepartment(String department) {
+		this.department = department;
+	}
 
 	public String getPurpose() {
 		return purpose;

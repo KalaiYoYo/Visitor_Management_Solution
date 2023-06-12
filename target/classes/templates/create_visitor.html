@@ -152,12 +152,12 @@ select > .placeholder {
 									<div class="col-md-6">
 										
 										<div class="form-floating">
-												<input type="text" 	 class="form-control"										
-												onkeyup="nameValidation();" name="name" pattern="[A-Za-z\s]+"
+												<input type="text" 	 class="form-control"	pattern="[A-Za-z\s.]+"									
+												onkeyup="nameValidation();" name="name" 
 												id="name_field"  maxlength="25"   title="Name should contain only Alphabets no special Characters allowed"
 												placeholder="Enter the Visitor Name" 												
 												required /> <label for="floatingInput" >Name</label> <span
-												id="name-error" class=text-danger></span>
+												id="name-error" class=text-danger></span> <!-- pattern="[A-Za-z\s]+" -->
 												
 												
 										</div>
@@ -175,7 +175,7 @@ select > .placeholder {
 										<div class="form-floating">
 											<input class="form-control" name="email" id="myEmail" maxlength="35"
 												type="email"
-												pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+												pattern="[A-Za-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
 												data-bv-emailaddress-message="The value is not a valid email address"
 												onkeyup="ValidateEmail();"
 													title="Email format abc@xyz.co"
@@ -202,7 +202,7 @@ select > .placeholder {
 										</div>
 										<br>
  -->	
-										<!-- <div class="form-floating">
+										 <!-- <div class="form-floating">
 												
 												<select class="form-select" 
 												type="text" 
@@ -225,13 +225,13 @@ select > .placeholder {
 										</div>
 										<br> -->
 
-										<!-- <div class="form-floating">
+										<!--  <div class="form-floating">
 											<input type="text" class="form-control"
 												onkeypress="return /[0-9]/i.test(event.key)" maxlength="1"
 												name="visitorCount" placeholder="Visitor Count" required />
 											<label for="floatingInput">Visitor Count</label>
 										</div>
-										<br>-->
+										<br> -->
  
 
 										<div class="form-floating">
@@ -245,9 +245,9 @@ select > .placeholder {
 									</div>
 									<div class="col-md-6">
 									<div class="form-floating">
-												<input type="text" 	 class="form-control"										
-												onkeyup="staffValidation();" name="toMeet" pattern="[A-Za-z\s]+"
-												id="staff_field" title="Name should contain only Alphabets no special Characters allowed"	 maxlength="25"  
+												<input type="text" 	 class="form-control"	pattern="[A-Za-z\s.]+"									
+												onkeyup="staffValidation();" name="toMeet" 
+												id="staff_field" title="Enter the Person name to Meet"	 maxlength="25"  
 												placeholder="Whom to Meet" 												
 												required /> <label for="floatingInput" >Whom to Meet</label> <span
 												id="staff-error" class=text-danger></span>
@@ -255,6 +255,19 @@ select > .placeholder {
 												
 										</div>
 										<br>
+										
+										<div class="form-floating">
+												<input type="text" 	 class="form-control"										
+												onkeyup="departmentValidation();" name="department" 
+												id="dept_field" title="Name should contain only Alphabets no special Characters allowed"	 maxlength="25"  
+												placeholder="Whom to Meet" 												
+												required /> <label for="floatingInput" >Department</label> <span
+												id="dept-error" class=text-danger></span>
+												
+												
+										</div>
+										<br>
+										
 										<!-- <div class="form-floating ">
 											<input type="tel" class="form-control" onkeypress="return /[0-9]/i.test(event.key)"
 												 minlength="10"  maxlength="10" id="mobileNumber" title="Mobile Number Format Start With '6|7|8|9' Ten digits in total required"
@@ -334,7 +347,7 @@ select > .placeholder {
 										<div class="form-floating">
 											<textarea type="text" rows="3" class="form-control"
 												name="description" placeholder="Purpose of the visit" maxlength="243"
-												id="floatingTextarea2" style="height: 100px"></textarea>
+												id="floatingTextarea2" style="height: 100px" required></textarea>
 											<label for="floatingTextarea2">Description</label>
 										</div>
 										<br>

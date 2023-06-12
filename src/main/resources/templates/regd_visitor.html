@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>OASYS-Visitor Management System</title>
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1">
+<link rel="icon" sizes="32x32" th:href="@{/image/oasys_logo_icon.png}"
+	type="image/png">
+
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+	rel="stylesheet">
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+
+<link
+	href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+	rel="stylesheet">
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/es6-shim/0.35.3/es6-shim.min.js"></script>
+
+<link th:href="@{/styles/cssandjs/core.css}" rel="stylesheet" />
+
+<link th:href="@{/styles/cssandjs/icon-font.min.css}" rel="stylesheet" />
+
+<link th:href="@{/styles/cssandjs/style.css}" rel="stylesheet" />
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<link
+	href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css"
+	rel="stylesheet" />
+<script
+	src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+
+
+
+<link rel="stylesheet"
+	href="https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/docs-app/css/dist/mdb5/standard/core.min.css">
+
+
+<link rel='stylesheet' id='roboto-subset.css-css'
+	href='https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/docs-app/css/mdb5/fonts/roboto-subset.css?ver=3.9.0-update.5'
+	type='text/css' media='all' />
+
+
+<meta charset="utf-8">
+<link rel="shortcut icon"
+	href="https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/favicon.ico" />
+
+<link rel="canonical"
+	href="https://mdbootstrap.com/docs/standard/extended/login/" />
+
+<script type="text/javascript">
+	function check() {
+		var mobile = document.getElementById("mobileNumber").value;
+		var message = document.getElementById("message");
+		message.innerHTML = "";
+		//var numformat = /^([6-9]{1}+[0-9]{9}])/;
+
+		if (mobile.length != 10) {
+			message.innerHTML = "10 Digit Mobile Number Required";
+		}
+
+	}
+</script>
+
+</head>
+<body>
+	<div class="card-header text-center bg-primary text-block ">
+		<h1 class="text-white">WELCOME TO OASYS</h1>
+	</div>
+	<section class="vh-100">
+		<div class="container py-5 h-100">
+			<div
+				class="row d-flex align-items-center justify-content-center h-100">
+				<div class="col-md-8 col-lg-7 col-xl-6">
+					<img th:src="@{/image/mobile.png}" alt="Trendy Pants and Shoes"
+						class="w-100 rounded-t-5 rounded-tr-lg-0 rounded-bl-lg-5" />
+				</div>
+				<div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
+					<form th:action="@{/visitors/resubmit}" method="POST" id="formID">
+						<!-- Email input -->
+
+
+
+						<div class="form-floating  text-center">
+							<input type="tel" class="form-control form-control-lg"
+								onkeypress="return /[0-9]/i.test(event.key)" minlength="10"
+								maxlength="10" id="mobileNumber"
+								title="Mobile Number Format Start With '6|7|8|9' Ten digits in total required"
+								name="phoneNumber" placeholder="Enter the Visitor Number"
+								pattern="[6-9]{1}[0-9]{9}" required onkeyup="check();" /> <label
+								for="floatingInput">Enter Your Mobile Number</label><span
+								class="text-danger" id="message"></span>
+						</div>
+						<!-- onkeypress="return /[0-9]/i.test(event.key)"  -->
+
+						<br>
+						<!-- Submit button -->
+						<button type="submit" class="btn btn-primary btn-lg btn-block ">Sign
+							in</button>
+						<button type="submit" class="btn btn-info btn-lg btn-block"
+							onclick="history.back()">Back</button>
+
+
+					</form>
+				</div>
+			</div>
+		</div>
+	</section>
+	<script>
+		const form = document.getElementById('formID');
+
+		form.addEventListener('submit', function handleSubmit(event) {
+			event.preventDefault();
+
+			form.submit();
+
+			// 👇️ Reset form here
+			form.reset();
+		});
+	</script>
+
+	<script type="text/javascript" th:src="@{/js/cssandjs/core.js}"></script>
+	<script type="text/javascript" th:src="@{/js/cssandjs/script.min.js}"></script>
+	<script type="text/javascript" th:src="@{/js/cssandjs/process.js}"></script>
+	<script type="text/javascript"
+		th:src="@{/js/cssandjs/layout-settings.js}"></script>
+
+
+
+
+</body>
+</html>

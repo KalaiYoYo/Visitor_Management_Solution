@@ -52,14 +52,14 @@
                                 <div class="col-md-6">
                                     <div class="form-floating">
                                         <input type="text" class="form-control"
-                                             name="name" th:field = "*{name}" placeholder="Enter the Visitor Name"required />
+                                          readonly   name="name" th:field = "*{name}" placeholder="Enter the Visitor Name"required />
                                              <label for="floatingInput">Name</label>
                                     </div><br>
                                     <div class="form-floating">
                                         <input name="email" class="form-control"
                             type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" 
                             data-bv-emailaddress-message="The value is not a valid email address"                                          
-                                               th:field = "*{email}" placeholder="Enter the Visitor EMail"required>
+                                            readonly   th:field = "*{email}" placeholder="Enter the Visitor EMail"required>
                                             <label for="floatingInput">Email</label>
                                     </div><br>
                                    <!--  <div class="form-floating">
@@ -70,7 +70,7 @@
                                     
                                     <div class="form-floating">
                                         <input type="text" class="form-control"
-                                            name="toMeet"  th:field = "*{toMeet}" placeholder="Whom To Meet"required>
+                                       readonly     name="toMeet"  th:field = "*{toMeet}" placeholder="Whom To Meet"required>
                                             <label for="floatingInput">WhomTo Meet</label>
                                     </div><br>
                                     
@@ -90,7 +90,7 @@
                                     <div class="form-floating">
                                         <textarea type="text"  rows="3"class="form-control"
                                             name="address"  th:field ="*{address}" style="height: 100px" placeholder="address of the Visitor"
-                                            required></textarea>
+                                          readonly  required></textarea>
                                             <label for="floatingInput">Address</label>
                                     </div><br>
                                     
@@ -99,7 +99,7 @@
                                     <div class="col-md-6">
                                     <div class="form-floating">
                                         <input type="text" class="form-control"
-                                            name="phoneNumber"  th:field = "*{phoneNumber}" placeholder="Enter the Visitor Number" pattern="[6-9]{1}[0-9]{9}" required />
+                                          readonly  name="phoneNumber"  th:field = "*{phoneNumber}" placeholder="Enter the Visitor Number" pattern="[6-9]{1}[0-9]{9}" required />
                                     <label for="floatingInput">Mobile</label>
                                     </div><br>
                                     <!-- <div class="form-floating">
@@ -108,13 +108,13 @@
                                             required>
                                             <label for="floatingInput">Govt.Id Details</label>
                                     </div><br> -->
-                                   <!--  <div class="form-floating">
+                                  <div class="form-floating">
                                         <input type="text" class="form-control"
                                             name="department"   th:field = "*{department}"placeholder="Department to Visit"
-                                            required>
+                                         readonly   required>
                                             <label for="floatingInput">Department</label>
                                     </div><br>
-                                    <div class="form-floating">
+                                   <!--  <div class="form-floating">
                                         <input type="text" class="form-control"
                                              name="vehicleType" placeholder="Vehicle Type" th:field="*{vehicleType}" required />
                                              <label for="floatingInput">Vehicle Type</label>
@@ -123,10 +123,15 @@
                                     <div class="form-floating">
                                         <textarea type="text"  rows="3"class="form-control"
                                             name="purpose"  th:field = "*{purpose}" placeholder= "purpose of the visit" style="height: 100px"
-                                            required></textarea>
+                                           readonly required></textarea>
                                             <label for="floatingInput">Purpose</label>
                                     </div><br>
-                                    
+                                <div class="form-floating">
+                                        <input type="datetime-local"  class="form-control"
+                                            name="exittime"  th:field = "*{exittime}" placeholder= "purpose of the visit" 
+                                            required />
+                                            <label for="floatingInput">Out Time</label>
+                                    </div><br> 
                                      
                                    
                                 <div class="contact-item">
@@ -134,9 +139,9 @@
              
               <input  type="hidden" th:field = "*{inTime}"/ >
             </div>
-            <div class="item">
+              <div class="item">
               <input  type="hidden" th:field = "*{outTime}"/ >
-            </div>
+            </div>  
             
           </div>
                                     <!-- <div class="form-group" >

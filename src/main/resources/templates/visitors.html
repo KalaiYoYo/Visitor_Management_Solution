@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="ISO-8859-1">
@@ -7,11 +7,12 @@
 <link rel="icon" sizes="32x32" th:href="@{/image/oasys_logo_icon.png}" type="image/png">
 <script src="https://code.jquery.com/jquery-3.3.1.min.js">
   </script>
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap.min.css">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
 	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
 	crossorigin="anonymous">
-	<script type="text/javascript">
+		<script type="text/javascript">
     $(document).ready(function () {
       setTimeout(function () {
         
@@ -65,31 +66,35 @@
             <div class="banner">
           <h1 class="text-white">  Visitor Information List	</h1>
         </div>
-       
+       </div>
 
         <br>
         
-        <div >
+      
 		
 		<div class = "row">
 			<div class = "col-lg-3">
 				<a th:href = "@{/visitors/new}" class = "btn btn-success "> Add visitor</a>
-			<!-- 	<a th:href = "@{/visitor/sucess}" class = "btn btn-success "> add</a> -->
+				<a th:href = "@{/visitor/sucess}" class = "btn btn-success "> add</a>
 				
 			</div>
 		</div>
 		<br>
-		<table class = "table table-striped table-bordered" id="visitor_list">
+		
+	
+	
+	
+		<table class = "table table-striped table-bordered text-center" id="visitor_list">
 			<thead class = "table-secondary">
 				<tr align="center">
 					<th class = "col-sm-2" align="center">  Name</th>
 					<th class = "col-sm-2" align="center">  Phone</th>
-					<!--  <th> Gender </th> -->
-					<!--<th>Visitor Address</th> -->
-					<!-- <th>Govt Id</th> -->
+					<!--  <th> Gender </th>
+					<th>Visitor Address</th>
+					<th>Govt Id</th> 
 					<th class = "col-sm-2" align="center">To Meet</th>
 					<!-- <th>Department</th>
-					<th>Purpose</th> -->
+					<th>Purpose</th>
 					<th class = "col-sm-2" align="center">Check In</th>
 					<th class = "col-sm-2" align="center">Check Out</th>
 					<th class = "col-sm-2" align="center"> Actions </th>
@@ -100,38 +105,40 @@
 				<tr  align="center" th:each = "visitor: ${visitors}">
 					<td th:text = "${visitor.name}"></td>
 					<td th:text = "${visitor.phoneNumber}"></td>
-					<!--  <td th:text = "${visitor.gender}"></td> -->
-					<!--<td th:text = "${visitor.address}"></td> -->
-					<!-- <td th:text = "${visitor.govtId}"></td> -->
+					<!--  <td th:text = "${visitor.gender}"></td>
+					<td th:text = "${visitor.address}"></td>
+					<td th:text = "${visitor.govtId}"></td> 
 					<td th:text = "${visitor.toMeet}"></td>					
 					<!-- <td th:text = "${visitor.department}"></td>
-					<td th:text = "${visitor.purpose}"></td> -->
+					<td th:text = "${visitor.purpose}"></td>
 					<td th:text = "${visitor.inTime}"></td>
 					 <td th:text = "${visitor}"></td> 
 					 
 					<td align="center">
-						<!-- <a th:href = "@{/visitors/edit/{id}(id=${visitor.id})}" class="btn btn-outline-secondary">
+					 <a th:href = "@{/visitors/edit/{id}(id=${visitor.id})}" class="btn btn-outline-secondary">
 						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">
   <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"></path>
-</svg></a>&nbsp;&nbsp;&nbsp;&nbsp; -->
+</svg></a>&nbsp;&nbsp;&nbsp;&nbsp; 
 						
 						 
-						 <a th:href = "@{/visitors/show/{id}(id=${visitor.id})}" class="btn btn-outline-primary">
-						 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
+						 <a th:href = "@{/visitors/show/{id}(id=${visitor.id})}" >
+						 <!-- <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
   <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"></path>
   <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"></path>
-</svg>
-
+</svg> 
+<button class=" btn btn-primary" >Edit</button>
 		
 
 
 </a>&nbsp;&nbsp;&nbsp;&nbsp;
 
 						
-						 <a th:href = "@{/visitors/{id}(id=${visitor.id})}" class="btn btn-outline-danger">
-						  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-octagon-fill" viewBox="0 0 16 16">
+						 <a th:href = "@{/visitors/{id}(id=${visitor.id})}" >
+						  <!-- <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-octagon-fill" viewBox="0 0 16 16">
   <path d="M11.46.146A.5.5 0 0 0 11.107 0H4.893a.5.5 0 0 0-.353.146L.146 4.54A.5.5 0 0 0 0 4.893v6.214a.5.5 0 0 0 .146.353l4.394 4.394a.5.5 0 0 0 .353.146h6.214a.5.5 0 0 0 .353-.146l4.394-4.394a.5.5 0 0 0 .146-.353V4.893a.5.5 0 0 0-.146-.353L11.46.146zm-6.106 4.5L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 1 1 .708-.708z"></path>
-</svg></a>	
+</svg>  class="btn btn-outline-danger" 
+<button class=" btn btn-danger" >Exit</button>
+</a>	
 						 
 						  	
 						 					
@@ -139,15 +146,277 @@
 				</tr>					
 			</tbody>		
 		</table>
-		</div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+	<script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap.min.js"></script>
+	 <script type="text/javascript">
+	$(document).ready(function() {
+	    $('#visitor_list').DataTable();
+	} );
+	</script>  
+	<script type="text/javascript">
+	$(document).ready(function () {
+		  $('#visitor_list').DataTable();
+		  $('.dataTables_length').addClass('bs-select');
+		});
+	</script>
+	
 		 <!-- <div class ="container">
           <button class="btn-primary" align="center" type="submit" href="/">Print</button>
-        </div> -->
-		<!-- <div class="btn btn-primary text-center mt-4 home">
+        </div>
+		<div class="btn btn-primary text-center mt-4 home">
 		<a href="" class="text-white"onclick="window.print()">print</a>
-		</div> -->
-	</div>
-	</div>
+		</div>
+		
+		</div>
+		<table class="table table-striped table-bordered text-center" id="dataTable">
+        <thead>
+            <tr>
+                <th class = "col-sm-2" align="center">  Name</th>
+					<th class = "col-sm-2" align="center">  Phone</th>
+					 <th> Gender </th>
+					<th>Visitor Address</th>
+					<th>Govt Id</th>
+					<th class = "col-sm-2" align="center">To Meet</th>
+					<th>Department</th>
+					<th>Purpose</th>
+					<th class = "col-sm-2" align="center">Check In</th>
+					<th class = "col-sm-2" align="center">Check Out</th>
+					<th class = "col-sm-2" align="center"> Actions </th>
+            </tr>
+        </thead>
+     <tbody th:with="count=0">
+        <tr  align="center" th:each = "visitor: ${visitors}">
+					<td th:text = "${visitor.name}"></td>
+					<td th:text = "${visitor.phoneNumber}"></td>
+					 <td th:text = "${visitor.gender}"></td>
+					<td th:text = "${visitor.address}"></td>
+					<td th:text = "${visitor.govtId}"></td>
+					<td th:text = "${visitor.toMeet}"></td>					
+					<td th:text = "${visitor.department}"></td>
+					<td th:text = "${visitor.purpose}"></td>
+					<td th:text = "${visitor.inTime}"></td>
+					 <td th:text = "${visitor}"></td> 
+					 
+					<td align="center">
+					 <a th:href = "@{/visitors/edit/{id}(id=${visitor.id})}" class="btn btn-outline-secondary">
+						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">
+  <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"></path>
+</svg></a>&nbsp;&nbsp;&nbsp;&nbsp;
+						
+						 
+						 <a th:href = "@{/visitors/show/{id}(id=${visitor.id})}" >
+						 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
+  <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"></path>
+  <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"></path>
+</svg>
+<button class=" btn btn-primary" >Edit</button>
+		
+
+
+</a>&nbsp;&nbsp;&nbsp;&nbsp;
+
+						
+						 <a th:href = "@{/visitors/{id}(id=${visitor.id})}" >
+						  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-octagon-fill" viewBox="0 0 16 16">
+  <path d="M11.46.146A.5.5 0 0 0 11.107 0H4.893a.5.5 0 0 0-.353.146L.146 4.54A.5.5 0 0 0 0 4.893v6.214a.5.5 0 0 0 .146.353l4.394 4.394a.5.5 0 0 0 .353.146h6.214a.5.5 0 0 0 .353-.146l4.394-4.394a.5.5 0 0 0 .146-.353V4.893a.5.5 0 0 0-.146-.353L11.46.146zm-6.106 4.5L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 1 1 .708-.708z"></path>
+</svg>  class="btn btn-outline-danger"
+<button class=" btn btn-danger" >Exit</button>
+</a>	
+						 
+						  	
+						 					
+					</td>
+				</tr>	
+        </tbody> 
+    </table>
+
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+	<script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap.min.js"></script>
+	<script type="text/javascript">
+	$(document).ready(function() {
+	    $('#dataTable').DataTable();
+	} );
+	</script> 
 	
 </body>
+</html> -->
+
+
+
+
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+<head>
+	<!-- Basic Page Info -->
+	
+	<!-- Mobile Specific Metas -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<title> OASYS-Visitor Management System</title>
+<link rel="icon" sizes="32x32" th:href="@{/image/oasys_logo_icon.png}" type="image/png">
+<script src="https://code.jquery.com/jquery-3.3.1.min.js">
+  </script>
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap.min.css">
+  <link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+	crossorigin="anonymous">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+	<!-- Google Font -->
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+	<!-- CSS <link rel="stylesheet" type="text/css" th:href="@{/styles/cssandjs/vendors/styles/core.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/styles/cssandjs/vendors/styles/icon-font.min.css}">
+	<link rel="stylesheet" type="text/css" th:hreff="@{/styles/cssandjs/src/plugins/datatables/css/dataTables.bootstrap4.min.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/styles/cssandjs/src/plugins/datatables/css/responsive.bootstrap4.min.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/styles/cssandjs/vendors/styles/style.css}"> -->
+
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-119386393-1"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+
+		gtag('config', 'UA-119386393-1');
+	</script>
+	 <script type="text/javascript">
+    $(document).ready(function () {
+      setTimeout(function () {
+        
+        location.reload(true);
+      }, 5000);
+    });
+  </script>
+</head>
+<body>
+<div class="shadow-sm p-3 mb-5 bg-white rounded"> <img th:src="@{/image/Artboard2.jpg}" class = "img-responsive">  </div>
+
+			<!-- <div  align="right">
+				<a th:href = "@{/visitors/new}"  class = "btn btn-success "> Add visitor</a>
+				
+				
+			</div><br> -->
+			<div  align="left">
+				<a th:href = "@{/visitors/time}"  class = "btn btn-success "> Today List</a>
+				
+				  <a th:href = "@{/visitors/report}" class = "btn btn-success ">Date Wise Report</a> 
+			</div><br>
+		
+       
+	
+					
+					<table border="1" class = "table table-striped table-responsive-md">
+					<thead class="table-secondary">
+					<tr>
+					<!-- <th align="center"> Sl.No</th>  -->
+					<th > <a th:href="@{'/page/' + ${currentPage} + '?sortField=name&sortDir=' + ${reverseSortDir}}">
+							Name</a></th>
+					<th  align="center"> <a th:href="@{'/page/' + ${currentPage} + '?sortField=phoneNumber&sortDir=' + ${reverseSortDir}}"> Phone</a></th>					
+					<th> <a th:href="@{'/page/' + ${currentPage} + '?sortField=address&sortDir=' + ${reverseSortDir}}">Visitor Address</a></th>				
+					<th  align="center"> <a th:href="@{'/page/' + ${currentPage} + '?sortField=toMeet&sortDir=' + ${reverseSortDir}}">To Meet</a></th>					
+					<th> <a th:href="@{'/page/' + ${currentPage} + '?sortField=purpose&sortDir=' + ${reverseSortDir}}">Purpose</a></th>
+					<th  align="center"><a th:href="@{'/page/' + ${currentPage} + '?sortField=inTime&sortDir=' + ${reverseSortDir}}">Check In</a></th>
+					<th  align="center"><a th:href="@{'/page/' + ${currentPage} + '?sortField=outTime&sortDir=' + ${reverseSortDir}}">Check Out</a></th>
+					<th  align="center"> Actions </th>
+					</tr>
+					</thead>
+					<tbody>
+					<tr th:each = "visitor: ${visitors}">
+					<!-- <td th:text="${visitorStat.index+1}"></td> -->
+					<td  th:text = "${visitor.name}"></td>
+					<td th:text = "${visitor.phoneNumber}"></td>
+					<!--  <td class="table-plus"th:text = "${visitor.gender}"></td> -->
+					<td th:text = "${visitor.address}"></td>
+					<!-- <td class="table-plus"th:text = "${visitor.govtId}"></td> -->
+					<td th:text = "${visitor.toMeet}"></td>					
+					<!-- <td class="table-plus"th:text = "${visitor.department}"></td> -->
+					<td  th:text = "${visitor.description}"></td>
+					<!-- <td  th:text = "${visitor.inTime}"></td> -->
+					<td th:text="${#temporals.format(visitor.inTime, 'dd-MM-yyyy HH:mm')}"></td>
+					<td th:text = "${visitor}"></td> 
+					<td align="center">
+					 <!-- <a th:href = "@{/visitors/edit/{id}(id=${visitor.id})}" class="btn btn-outline-secondary">
+						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">
+  <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"></path>
+</svg></a>&nbsp;&nbsp;&nbsp;&nbsp;
+						 -->
+						 
+						 
+						 <!-- <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
+  <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"></path>
+  <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"></path>
+</svg> -->
+
+<a th:href = "@{/visitors/show/{id}(id=${visitor.id})}" ><button class=" btn btn-primary" >View</button></a>
+		
+
+
+
+
+						
+						<!--  <a th:href = "@{/visitors/{id}(id=${visitor.id})}" >
+						  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-octagon-fill" viewBox="0 0 16 16">
+  <path d="M11.46.146A.5.5 0 0 0 11.107 0H4.893a.5.5 0 0 0-.353.146L.146 4.54A.5.5 0 0 0 0 4.893v6.214a.5.5 0 0 0 .146.353l4.394 4.394a.5.5 0 0 0 .353.146h6.214a.5.5 0 0 0 .353-.146l4.394-4.394a.5.5 0 0 0 .146-.353V4.893a.5.5 0 0 0-.146-.353L11.46.146zm-6.106 4.5L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 1 1 .708-.708z"></path>
+</svg>  class="btn btn-outline-danger"
+<button class=" btn btn-danger" >Exit</button> -->
+	
+						 
+						  	
+						 					
+					</td>
+				</tr>
+							</tbody>
+						</table>
+				
+				<div th:if = "${totalPages > 1}">
+			<div class = "row col-sm-12">
+				<div class = "col-sm-2">
+					Total Rows: [[${totalItems}]] 
+				</div>
+				<div class = "col-sm-8">
+					<span th:each="i: ${#numbers.sequence(1, totalPages)}">
+						<a th:if="${currentPage != i}" th:href="@{'/page/' + ${i}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">[[${i}]]</a>
+						<span th:unless="${currentPage != i}">[[${i}]]</span>  
+					</span>
+				</div>
+				<div class = "col-sm-1">
+					<a th:if="${currentPage < totalPages}" th:href="@{'/page/' + ${currentPage + 1}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Next</a>
+					<span th:unless="${currentPage < totalPages}">Next</span>
+				</div>
+				
+				 <div class="col-sm-1">
+    				<a th:if="${currentPage < totalPages}" th:href="@{'/page/' + ${totalPages}+ '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Last</a>
+					<span th:unless="${currentPage < totalPages}">Last</span>
+   				 </div>
+			</div>
+		</div>
+				<!-- Export Datatable End -->
+			
+	<!-- js -->
+	
+	
+	<!-- <script th:src ="@{/js/cssandjs/vendors/scripts/core.js}"></script>
+	<script th:src="@{/js/cssandjs/vendors/scripts/script.min.js}"></script>
+	<script th:src="@{/js/cssandjs/vendors/scripts/process.js}"></script>
+	<script th:src="@{/js/cssandjs/vendors/scripts/layout-settings.js}"></script>
+	<script th:src="@{/js/cssandjs/src/plugins/datatables/js/jquery.dataTables.min.js}"></script>
+	<script th:src="@{/js/cssandjs/src/plugins/datatables/js/dataTables.bootstrap4.min.js}"></script>
+	<script th:src="@{/js/cssandjs/src/plugins/datatables/js/dataTables.responsive.min.js}"></script>
+	<script th:src="@{/js/cssandjs/src/plugins/datatables/js/responsive.bootstrap4.min.js}"></script>
+	buttons for Export datatable -->
+	<!-- <script th:src="@{/js/cssandjs/src/plugins/datatables/js/dataTables.buttons.min.js}"></script>
+	<script th:src="@{/js/cssandjs/src/plugins/datatables/js/buttons.bootstrap4.min.js}"></script>
+	<script th:src="@{/js/cssandjs/src/plugins/datatables/js/buttons.print.min.js}"></script>
+	<script th:src="@{/js/cssandjs/src/plugins/datatables/js/buttons.html5.min.js}"></script>
+	<script th:src="@{/js/cssandjs/src/plugins/datatables/js/buttons.flash.min.js}"></script>
+	<script th:src="@{/js/cssandjs/src/plugins/datatables/js/pdfmake.min.js}"></script>
+	<script th:src="@{/js/cssandjs/src/plugins/datatables/js/vfs_fonts.js}"></script> -->
+	<!-- Datatable Setting js -->
+	<!-- <script th:src="@{/js/cssandjs/vendors/scripts/datatable-setting.js}"></script> --></body>
 </html>
